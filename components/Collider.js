@@ -1,6 +1,8 @@
 // Registering component in Collider.js
 AFRAME.registerComponent("flying-birds", {
+
   init: function () {
+
     for (var i = 1; i <= 20; i++) {
       //id
       var id = `hurdle${i}`;
@@ -15,8 +17,11 @@ AFRAME.registerComponent("flying-birds", {
       //call the function
       this.flyingBirds(id, position);
     }
+
   },
+
   flyingBirds: (id, position) => {
+    
     //Get the terrain element
     var terrainEl = document.querySelector("#terrain");
 
@@ -38,14 +43,17 @@ AFRAME.registerComponent("flying-birds", {
     //set the static body of the physic system
     birdEl.setAttribute("static-body", {
       shape: "sphere",
-      sphereRadius: 5,
+      sphereRadius: 3.2,
     });
 
+    //set the game play attribute
     birdEl.setAttribute("game-play", {
       elementId: `#${id}`,
     });
 
     //append the bird entity as the child of the terrain entity
     terrainEl.appendChild(birdEl);
+  
   },
+
 });

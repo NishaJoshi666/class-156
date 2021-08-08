@@ -1,9 +1,13 @@
 //Terrain Rotation
 AFRAME.registerComponent("terrain-rotation-reader", {
+
   schema: {
     speedOfRoation: { type: "number", default: 0 },
+
   },
+
   init: function () {
+
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
         if (this.data.speedOfRoation < 0.1) {
@@ -16,8 +20,11 @@ AFRAME.registerComponent("terrain-rotation-reader", {
         }
       }
     });
+
   },
+
   tick: function () {
+
     var mapRotation = this.el.getAttribute("rotation");
 
     mapRotation.y += this.data.speedOfRoation;
@@ -27,16 +34,22 @@ AFRAME.registerComponent("terrain-rotation-reader", {
       y: mapRotation.y,
       z: mapRotation.z,
     });
+
   },
+
 });
 
 //Plane rotation component
 AFRAME.registerComponent("plane-rotation-reader", {
+
   schema: {
     speedOfRoation: { type: "number", default: 0 },
     speedOfAscent: { type: "number", default: 0 },
+
   },
+
   init: function () {
+
     window.addEventListener("keydown", (e) => {
       //get the data from the attributes
       this.data.speedOfRoation = this.el.getAttribute("rotation");
@@ -52,12 +65,14 @@ AFRAME.registerComponent("plane-rotation-reader", {
           this.el.setAttribute("rotation", planeRotation);
         }
       }
+
       if (e.key === "ArrowLeft") {
         if (planeRotation.x > -10) {
           planeRotation.x -= 0.5;
           this.el.setAttribute("rotation", planeRotation);
         }
       }
+      
       if (e.key === "ArrowUp") {
         if (planeRotation.z < 20) {
           planeRotation.z += 0.5;
@@ -68,6 +83,7 @@ AFRAME.registerComponent("plane-rotation-reader", {
           this.el.setAttribute("position", planePosition);
         }
       }
+      
       if (e.key === "ArrowDown") {
         if (planeRotation.z > -10) {
           planeRotation.z -= 0.5;
@@ -78,6 +94,9 @@ AFRAME.registerComponent("plane-rotation-reader", {
           this.el.setAttribute("position", planePosition);
         }
       }
+    
     });
+  
   },
+  
 });
